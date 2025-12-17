@@ -146,6 +146,7 @@ class NAGFluxTransformer2DModel(FluxTransformer2DModel):
                 hidden_states = self._gradient_checkpointing_func(
                     block,
                     hidden_states,
+                    encoder_hidden_states,
                     temb,
                     image_rotary_emb,
                 )
@@ -153,6 +154,7 @@ class NAGFluxTransformer2DModel(FluxTransformer2DModel):
             else:
                 hidden_states = block(
                     hidden_states=hidden_states,
+                    encoder_hidden_states=encoder_hidden_states,
                     temb=temb,
                     image_rotary_emb=image_rotary_emb,
                     joint_attention_kwargs=joint_attention_kwargs,
